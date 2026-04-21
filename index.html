@@ -386,6 +386,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;}
   <div class="settings-panel" id="sett-main">
     <div class="settings-ov-title">CONFIGURACIÓN</div>
 
+    <button class="settings-opt" onclick="exportData()">
+      <span class="settings-opt-icon">📤</span>
+      <div>
+        <div class="settings-opt-label">Exportar datos</div>
+        <div class="settings-opt-sub">Descarga un backup con rutinas e historial</div>
+      </div>
+    </button>
+    
+    <button class="settings-opt" onclick="triggerImport()">
+      <span class="settings-opt-icon">📥</span>
+      <div>
+        <div class="settings-opt-label">Importar datos</div>
+        <div class="settings-opt-sub">Restaura desde un backup anterior</div>
+      </div>
+    </button>
+    
+    <div class="settings-divider"></div>
+
     <button class="settings-opt" onclick="settingsAction('routines')">
       <span class="settings-opt-icon">🗑</span>
       <div>
@@ -448,7 +466,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;}
   </div>
 
 </div>
-
+<input type="file" id="import-input" accept=".json"
+  style="display:none" onchange="onImportFileSelected(event)">
 </div><!-- /app -->
 
 <script>
@@ -960,6 +979,8 @@ let nex = [], selC = null, exDrag = null;
 let activeRoutine = null, sessWeights = {};
 let editingRid = null, manageMode = false, rdrag = null;
 let pendingAction = null;
+let pendingAction = null;
+let importedData = null;
 
 // ─── PERSISTENCIA ────────────────────────────────────────────
 function saveToStorage() {
@@ -1089,27 +1110,83 @@ function selectExForHistory(exId) {
 }
 
 function executeSettings() {
-  if (pendingAction === 'routines' || pendingAction === 'all') routines = [];
-  if (pendingAction === 'history' || pendingAction === 'all') {
+  // ── IMPORTAR ──
+  if (pendingAction === 'import' && importedData) {
+    routines = importedData.routines;
     EDB.forEach(e => { wHist[e.id] = {prev:0, pr:0}; });
-  }
-  if (pendingAction === null && pickerExId) {
-    // acción de ejercicio individual
-    wHist[pickerExId] = {prev:0, pr:0};
-    pickerExId = null;
+    Object.assign(wHist, importedData.wHist);
+    importedData = null;
     saveToStorage();
     renderHome();
-    // volver al picker para poder borrar más
-    document.getElementById('sett-confirm').classList.remove('show');
-    document.getElementById('sett-picker-input').value = '';
-    renderExPicker();
-    document.getElementById('sett-picker').classList.add('show');
+    closeSettings();
+    if (manageMode) toggleManage();
     return;
+  }
+  // ── BORRAR ──
+  if (pendingAction === 'routines' || pendingAction === 'all') routines = [];
+  if (pendingAction === 'history'  || pendingAction === 'all') {
+    EDB.forEach(e => { wHist[e.id] = {prev:0, pr:0}; });
   }
   saveToStorage();
   renderHome();
   closeSettings();
   if (manageMode) toggleManage();
+}
+
+// ─── EXPORTAR ────────────────────────────────────────────────
+function exportData() {
+  const data = {
+    version: 1,
+    exportDate: new Date().toISOString(),
+    routines: routines,
+    wHist: wHist,
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `MisRutinas-backup-${new Date().toISOString().slice(0,10)}.json`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  closeSettings();
+  if (manageMode) toggleManage();
+}
+
+// ─── IMPORTAR ────────────────────────────────────────────────
+function triggerImport() {
+  document.getElementById('import-input').click();
+}
+
+function onImportFileSelected(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    try {
+      const data = JSON.parse(ev.target.result);
+      if (!data.routines || !data.wHist) {
+        alert('Archivo no válido. Usa un backup generado por MisRutinas.');
+        return;
+      }
+      importedData = data;
+      pendingAction = 'import';
+      const nr = data.routines.length;
+      const nh = Object.values(data.wHist).filter(h => h.prev > 0 || h.pr > 0).length;
+      document.getElementById('sett-confirm-icon').textContent = '📥';
+      document.getElementById('sett-confirm-title').textContent = '¿Importar este backup?';
+      document.getElementById('sett-confirm-sub').textContent =
+        `Se importarán ${nr} rutina${nr!==1?'s':''} y el historial de ${nh} ejercicio${nh!==1?'s':''}. Los datos actuales se sobreescribirán completamente.`;
+      document.getElementById('sett-confirm-back-btn').onclick = showSettingsMain;
+      document.getElementById('sett-main').style.display = 'none';
+      document.getElementById('sett-confirm').classList.add('show');
+    } catch {
+      alert('Error al leer el archivo. Asegúrate de que es un JSON válido.');
+    }
+    e.target.value = '';
+  };
+  reader.readAsText(file);
 }
 
 // ─── UTILIDADES ──────────────────────────────────────────────

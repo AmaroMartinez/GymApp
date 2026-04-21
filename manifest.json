@@ -1,6 +1,6 @@
 {
-  "name": "GymRoutine",
-  "short_name": "GymApp",
+  "name": "MisRutinas",
+  "short_name": "MisRutinas",
   "description": "Gestión de rutinas de gimnasio",
   "start_url": "./index.html",
   "display": "standalone",

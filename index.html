@@ -947,6 +947,10 @@ function showPhoto(exId, exName) {
 function closePhoto() {
   document.getElementById('photo-ov').classList.remove('show');
 }
+  
+function norm(s) {
+  return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
 
 const wHist = {};
 EDB.forEach(e => { wHist[e.id] = {prev:0, pr:0}; });
@@ -1037,8 +1041,9 @@ function renderExPicker() {
     return h && (h.prev > 0 || h.pr > 0) && (ex.n.toLowerCase().includes(q) || ex.c.toLowerCase().includes(q));
   });
   // todos los ejercicios si se busca algo (aunque no tengan historial)
+  const nq = norm(q);
   const searched = q
-    ? EDB.filter(ex => ex.n.toLowerCase().includes(q) || ex.c.toLowerCase().includes(q))
+    ? EDB.filter(ex => norm(ex.n).includes(nq) || norm(ex.c).includes(nq))
     : withHistory;
 
   if (!searched.length) {
@@ -1601,7 +1606,8 @@ function setSel(c) { selC = c === 'Todos' ? null : c; renderSel(); }
 function renderExList() {
   const q = (document.getElementById('sinput').value || '').toLowerCase();
   const taken = nex.map(e => e.ex.id);
-  const list = EDB.filter(ex => (!selC || ex.c === selC) && (ex.n.toLowerCase().includes(q) || ex.c.toLowerCase().includes(q)));
+  const nq = norm(q);
+  const list = EDB.filter(ex => (!selC || ex.c === selC) && (norm(ex.n).includes(nq) || norm(ex.c).includes(nq)));
   document.getElementById('ex-count').textContent = `${list.length} ejercicio${list.length!==1?'s':''}`;
   document.getElementById('exlist').innerHTML = list.map(ex => {
     const col = CC[ex.c] || {bg:'rgba(212,240,0,.1)', t:'#D4F000'};

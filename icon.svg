@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#0A0A0A" rx="100"/>
+  <!-- barra -->
+  <rect x="96" y="236" width="320" height="40" rx="8" fill="#D4F000"/>
+  <!-- disco izq grande -->
+  <rect x="72" y="176" width="40" height="160" rx="10" fill="#D4F000"/>
+  <!-- disco izq pequeño -->
+  <rect x="44" y="206" width="30" height="100" rx="8" fill="#D4F000"/>
+  <!-- disco der grande -->
+  <rect x="400" y="176" width="40" height="160" rx="10" fill="#D4F000"/>
+  <!-- disco der pequeño -->
+  <rect x="438" y="206" width="30" height="100" rx="8" fill="#D4F000"/>
+</svg>

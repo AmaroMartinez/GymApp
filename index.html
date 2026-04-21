@@ -183,6 +183,67 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;}
 .sess-ov-save{flex:1;background:var(--ac);border:none;border-radius:12px;padding:14px;font-size:14px;font-weight:800;color:var(--ab);cursor:pointer;}
 
 .r-ghost{position:absolute;pointer-events:none;z-index:100;opacity:.88;box-shadow:0 8px 28px rgba(0,0,0,.7);border-radius:12px;}
+
+/* FOTO EJERCICIO */
+.photo-ov{position:fixed;inset:0;background:rgba(0,0,0,.93);display:none;flex-direction:column;align-items:center;justify-content:center;z-index:200;padding:24px;gap:16px;}
+.photo-ov.show{display:flex;}
+.photo-ov-name{font-size:15px;font-weight:800;color:var(--at);text-align:center;line-height:1.3;}
+.photo-ov-img{max-width:100%;max-height:55vh;border-radius:12px;object-fit:contain;background:var(--as);}
+.photo-ov-loader{color:var(--am);font-size:13px;}
+.photo-ov-hint{font-size:11px;color:var(--am);text-align:center;}
+.photo-ov-close{margin-top:4px;padding:12px 32px;border-radius:24px;background:var(--as2);border:1px solid var(--abr);color:var(--at);font-size:14px;font-weight:700;cursor:pointer;}
+/* indicador visual de que el nombre es clickable */
+.dxc-name.has-photo{text-decoration:underline;text-decoration-style:dotted;text-decoration-color:rgba(212,240,0,.4);cursor:pointer;}
+
+/* BADGE en modo gestión */
+.hb.manage-on{background:var(--as2)!important;border:1.5px solid var(--abr)!important;color:var(--at)!important;font-size:19px!important;cursor:pointer!important;transition:background .2s,border-color .2s;}
+
+/* SETTINGS OVERLAY */
+.settings-ov{position:fixed;inset:0;background:rgba(8,8,8,.97);display:none;flex-direction:column;align-items:center;justify-content:center;z-index:300;padding:32px 24px;gap:0;}
+.settings-ov.show{display:flex;}
+.settings-panel{width:100%;display:flex;flex-direction:column;gap:10px;}
+.settings-ov-title{font-size:9px;font-weight:800;color:var(--am);letter-spacing:4px;text-align:center;margin-bottom:6px;}
+.settings-opt{width:100%;background:var(--as);border:1px solid var(--abr);border-radius:14px;padding:16px;display:flex;align-items:center;gap:14px;cursor:pointer;text-align:left;transition:opacity .15s;}
+.settings-opt:active{opacity:.6;}
+.settings-opt-icon{font-size:22px;flex-shrink:0;width:28px;text-align:center;}
+.settings-opt-label{font-size:15px;font-weight:700;color:var(--at);}
+.settings-opt-sub{font-size:11px;color:var(--am);margin-top:2px;}
+.settings-opt.danger .settings-opt-label{color:#E85050;}
+.settings-opt.danger{border-color:rgba(232,80,80,.18);}
+.settings-divider{height:1px;background:var(--abr);margin:4px 0;}
+.settings-close-btn{width:100%;background:transparent;border:1.5px solid var(--abr);border-radius:14px;padding:14px;font-size:14px;font-weight:700;color:var(--am);cursor:pointer;margin-top:4px;}
+/* panel confirmación */
+.settings-confirm{width:100%;display:none;flex-direction:column;align-items:center;gap:16px;}
+.settings-confirm.show{display:flex;}
+.settings-confirm-icon{font-size:44px;}
+.settings-confirm-title{font-size:16px;font-weight:800;color:var(--at);text-align:center;line-height:1.3;}
+.settings-confirm-sub{font-size:13px;color:var(--am);text-align:center;line-height:1.6;}
+.settings-confirm-btns{display:flex;gap:10px;width:100%;}
+.settings-confirm-back{flex:1;background:transparent;border:1.5px solid #444;border-radius:12px;padding:14px;font-size:14px;font-weight:700;color:#999;cursor:pointer;}
+.settings-confirm-ok{flex:1;background:#C0392B;border:none;border-radius:12px;padding:14px;font-size:14px;font-weight:800;color:#fff;cursor:pointer;}
+
+/* panel selector de ejercicio */
+.sett-picker{width:100%;height:100%;display:none;flex-direction:column;gap:0;position:absolute;inset:0;background:rgba(8,8,8,.98);padding:calc(32px + var(--sat)) 24px calc(24px + var(--sab));}
+.sett-picker.show{display:flex;}
+.sett-picker-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-shrink:0;}
+.sett-picker-back{width:36px;height:36px;border-radius:50%;background:var(--as2);border:none;cursor:pointer;color:var(--ad);font-size:18px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.sett-picker-title{font-size:11px;font-weight:800;color:var(--at);letter-spacing:3px;flex:1;}
+.sett-picker-search{display:flex;align-items:center;gap:8px;background:var(--as);border:1px solid var(--abr);border-radius:10px;padding:0 12px;margin-bottom:10px;flex-shrink:0;}
+.sett-picker-input{flex:1;background:none;border:none;outline:none;color:var(--at);font-size:14px;padding:10px 0;font-family:inherit;}
+.sett-picker-input::placeholder{color:var(--am);}
+.sett-picker-empty{font-size:13px;color:var(--am);text-align:center;padding:32px 0;}
+.sett-picker-list{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.sett-picker-list::-webkit-scrollbar{display:none;}
+.sett-picker-item{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--abr);cursor:pointer;}
+.sett-picker-item:last-child{border-bottom:none;}
+.sett-picker-item:active{opacity:.6;}
+.sett-picker-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;}
+.sett-picker-info{flex:1;min-width:0;}
+.sett-picker-name{font-size:13px;font-weight:700;color:var(--at);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sett-picker-cat{font-size:10px;font-weight:700;padding:1px 6px;border-radius:10px;display:inline-block;margin-top:2px;}
+.sett-picker-stats{display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex-shrink:0;}
+.sett-picker-stat{font-size:10px;color:var(--am);white-space:nowrap;}
+.sett-picker-stat span{font-weight:700;color:var(--ad);}
 </style>
 </head>
 <body>
@@ -192,7 +253,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;}
   <div class="scr on" id="s-home">
     <div class="ah">
       <div><div class="hs">MIS</div><div class="ht">RUTINAS</div></div>
-      <div class="hb" id="hbadge">0</div>
+      <div class="hb" id="hbadge" onclick="onBadgeClick()">0</div>
     </div>
     <div class="sb" id="home-sb">
       <div class="rl" id="rlist"></div>
@@ -309,6 +370,84 @@ body{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;}
     <div class="ex-count" id="ex-count"></div>
     <div class="sb"><div class="el" id="exlist"></div></div>
   </div>
+
+<!-- OVERLAY FOTO EJERCICIO -->
+<div class="photo-ov" id="photo-ov" onclick="closePhoto()">
+  <div class="photo-ov-name" id="photo-ov-name"></div>
+  <div class="photo-ov-loader" id="photo-ov-loader">Cargando imagen...</div>
+  <img class="photo-ov-img" id="photo-ov-img" style="display:none" alt="">
+  <div class="photo-ov-hint">Toca para cerrar</div>
+</div>
+
+<!-- OVERLAY CONFIGURACIÓN -->
+<div class="settings-ov" id="settings-ov">
+
+  <!-- Panel principal -->
+  <div class="settings-panel" id="sett-main">
+    <div class="settings-ov-title">CONFIGURACIÓN</div>
+
+    <button class="settings-opt" onclick="settingsAction('routines')">
+      <span class="settings-opt-icon">🗑</span>
+      <div>
+        <div class="settings-opt-label">Borrar todas las rutinas</div>
+        <div class="settings-opt-sub">Elimina todas las rutinas guardadas</div>
+      </div>
+    </button>
+
+    <button class="settings-opt" onclick="settingsAction('history')">
+      <span class="settings-opt-icon">📊</span>
+      <div>
+        <div class="settings-opt-label">Borrar historial de pesos</div>
+        <div class="settings-opt-sub">Elimina récords y pesos anteriores</div>
+      </div>
+    </button>
+
+    <button class="settings-opt" onclick="openExPicker()">
+      <span class="settings-opt-icon">🎯</span>
+      <div>
+        <div class="settings-opt-label">Borrar historial de un ejercicio</div>
+        <div class="settings-opt-sub">Selecciona qué ejercicio limpiar</div>
+      </div>
+    </button>
+
+    <div class="settings-divider"></div>
+
+    <button class="settings-opt danger" onclick="settingsAction('all')">
+      <span class="settings-opt-icon">⚠️</span>
+      <div>
+        <div class="settings-opt-label">Borrar todo</div>
+        <div class="settings-opt-sub">Elimina rutinas e historial completo</div>
+      </div>
+    </button>
+
+    <button class="settings-close-btn" onclick="closeSettings()">Cerrar</button>
+  </div>
+
+  <!-- Panel confirmación -->
+  <div class="settings-confirm" id="sett-confirm">
+    <div class="settings-confirm-icon" id="sett-confirm-icon">⚠️</div>
+    <div class="settings-confirm-title" id="sett-confirm-title"></div>
+    <div class="settings-confirm-sub" id="sett-confirm-sub"></div>
+    <div class="settings-confirm-btns">
+      <button class="settings-confirm-back" id="sett-confirm-back-btn" onclick="showSettingsMain()">Cancelar</button>
+      <button class="settings-confirm-ok" onclick="executeSettings()">Sí, eliminar</button>
+    </div>
+  </div>
+
+  <!-- Panel selector de ejercicio -->
+  <div class="sett-picker" id="sett-picker">
+    <div class="sett-picker-header">
+      <button class="sett-picker-back" onclick="showSettingsMain()">‹</button>
+      <span class="sett-picker-title">SELECCIONA EJERCICIO</span>
+    </div>
+    <div class="sett-picker-search">
+      <span style="font-size:13px;color:var(--am)">🔍</span>
+      <input class="sett-picker-input" id="sett-picker-input" placeholder="Buscar ejercicio..." oninput="renderExPicker()">
+    </div>
+    <div class="sett-picker-list" id="sett-picker-list"></div>
+  </div>
+
+</div>
 
 </div><!-- /app -->
 
@@ -558,9 +697,257 @@ const EDB=[
   {id:'st20',n:'Foam roller TFL / glúteo',              c:'Estiramiento',e:'🧘'},
   {id:'st21',n:'Hip 90/90',                             c:'Estiramiento',e:'🧘'},
   {id:'st22',n:"World's greatest stretch",              c:'Estiramiento',e:'🧘'},
+  // ── PECHO nuevos ──
+  {id:'p27',n:'Floor press c/ barra',                   c:'Pecho',   e:'🏋️'},
+  {id:'p28',n:'Floor press c/ mancuernas',              c:'Pecho',   e:'💪'},
+  {id:'p29',n:'Push-up pike',                           c:'Pecho',   e:'🤸'},
+  {id:'p30',n:'Flexiones declinadas',                   c:'Pecho',   e:'🤸'},
+  {id:'p31',n:'Aperturas c/ mancuernas declinado',      c:'Pecho',   e:'💪'},
+  {id:'p32',n:'Press en cables neutro (Svend polea)',   c:'Pecho',   e:'🔗'},
+  // ── ESPALDA nuevos ──
+  {id:'es34',n:'Peso muerto stiff leg c/ barra',        c:'Espalda', e:'🏋️'},
+  {id:'es35',n:'Cable rear delt fly',                   c:'Espalda', e:'🔗'},
+  {id:'es36',n:'Remo boca abajo en banco c/ mancuernas',c:'Espalda', e:'💪'},
+  {id:'es37',n:'Superman en suelo',                     c:'Espalda', e:'🤸'},
+  {id:'es38',n:'Remo con cuerda en polea media',        c:'Espalda', e:'🔗'},
+  {id:'es39',n:'Trap bar deadlift',                     c:'Espalda', e:'🏋️'},
+  {id:'es40',n:'Peso muerto deficit c/ barra',          c:'Espalda', e:'🏋️'},
+  {id:'es41',n:'Remo inclinado c/ agarre supino',       c:'Espalda', e:'🏋️'},
+  // ── PIERNAS nuevos ──
+  {id:'l30',n:'Sentadilla sissy',                       c:'Piernas', e:'🦵'},
+  {id:'l31',n:'Zancada lateral c/ mancuernas',          c:'Piernas', e:'🦵'},
+  {id:'l32',n:'Zancada cortesía c/ mancuernas',         c:'Piernas', e:'🦵'},
+  {id:'l33',n:'Sentadilla con salto',                   c:'Piernas', e:'⚡'},
+  {id:'l34',n:'Step-up c/ barra',                       c:'Piernas', e:'🦵'},
+  {id:'l35',n:'Sentadilla lateral c/ barra',            c:'Piernas', e:'🦵'},
+  {id:'l36',n:'Peso muerto stiff leg c/ mancuernas',   c:'Piernas', e:'💪'},
+  {id:'l37',n:'Sentadilla pin c/ barra',                c:'Piernas', e:'🦵'},
+  {id:'l38',n:'Glute ham raise',                        c:'Piernas', e:'🤸'},
+  {id:'l39',n:'Leg press unilateral',                   c:'Piernas', e:'🔵'},
+  {id:'l40',n:'Reverse Nordic curl',                    c:'Piernas', e:'🤸'},
+  {id:'l41',n:'Pantorrillas en prensa unilateral',      c:'Piernas', e:'🔵'},
+  // ── GLÚTEOS nuevos ──
+  {id:'g14',n:'Cable pull-through',                     c:'Glúteos', e:'🔗'},
+  {id:'g15',n:'Reverse hyper',                          c:'Glúteos', e:'🔵'},
+  {id:'g16',n:'Donkey kick c/ banda',                   c:'Glúteos', e:'🤸'},
+  {id:'g17',n:'Puente glúteo unilateral c/ peso',       c:'Glúteos', e:'🍑'},
+  {id:'g18',n:'Patada trasera en cuadrupedia',          c:'Glúteos', e:'🤸'},
+  {id:'g19',n:'Side-lying hip abduction c/ banda',      c:'Glúteos', e:'🤸'},
+  // ── HOMBROS nuevos ──
+  {id:'h22',n:'Press landmine hombros',                 c:'Hombros', e:'🏋️'},
+  {id:'h23',n:'Encogimientos c/ barra por detrás',      c:'Hombros', e:'🏋️'},
+  {id:'h24',n:'Press a una mano c/ mancuerna de pie',   c:'Hombros', e:'💪'},
+  {id:'h25',n:'Elevaciones laterales tumbado lateral',  c:'Hombros', e:'💪'},
+  {id:'h26',n:'Press Y (inclinado)',                    c:'Hombros', e:'💪'},
+  {id:'h27',n:'Rotación interna en polea',              c:'Hombros', e:'🔗'},
+  {id:'h28',n:'Rotación externa c/ mancuerna tumbado',  c:'Hombros', e:'💪'},
+  // ── BÍCEPS nuevos ──
+  {id:'b17',n:'Curl c/ barra agarre amplio',            c:'Bíceps',  e:'💪'},
+  {id:'b18',n:'Curl reverso c/ barra EZ',               c:'Bíceps',  e:'💪'},
+  {id:'b19',n:'Curl cruzado c/ mancuerna',              c:'Bíceps',  e:'💪'},
+  {id:'b20',n:'Zottman curl',                           c:'Bíceps',  e:'💪'},
+  {id:'b21',n:'Curl en TRX',                            c:'Bíceps',  e:'🔗'},
+  {id:'b22',n:'Curl 21s c/ barra',                      c:'Bíceps',  e:'💪'},
+  // ── TRÍCEPS nuevos ──
+  {id:'t17',n:'Extensión tumbado en polea (cable)',     c:'Tríceps', e:'🔗'},
+  {id:'t18',n:'Press nórdico de tríceps en banco',      c:'Tríceps', e:'🤸'},
+  {id:'t19',n:'Extensión bilateral sobre cabeza c/ mancuernas', c:'Tríceps', e:'💪'},
+  {id:'t20',n:'Fondos con asistencia en máquina',       c:'Tríceps', e:'🔵'},
+  // ── ANTEBRAZOS nuevos ──
+  {id:'af1',n:'Curl de muñeca c/ barra',                c:'Antebrazos',e:'💪'},
+  {id:'af2',n:'Curl de muñeca inverso c/ barra',        c:'Antebrazos',e:'💪'},
+  {id:'af3',n:'Curl reverso c/ barra',                  c:'Antebrazos',e:'💪'},
+  {id:'af4',n:'Curl reverso c/ mancuernas',             c:'Antebrazos',e:'💪'},
+  {id:'af5',n:'Zottman curl (antebrazos)',               c:'Antebrazos',e:'💪'},
+  {id:'af6',n:'Agarre pasivo en barra (dead hang)',     c:'Antebrazos',e:'🔝'},
+  {id:'af7',n:'Wrist roller',                           c:'Antebrazos',e:'💪'},
+  {id:'af8',n:'Pinch grip c/ disco',                    c:'Antebrazos',e:'💪'},
+  {id:'af9',n:'Curl de muñeca c/ mancuernas',           c:'Antebrazos',e:'💪'},
+  {id:'af10',n:'Farmer carry pesado (grip)',             c:'Antebrazos',e:'💪'},
+  // ── ABDOMEN nuevos ──
+  {id:'a23',n:'Crunch declinado',                       c:'Abdomen', e:'🔥'},
+  {id:'a24',n:'Chop en polea alta (cable woodchop)',    c:'Abdomen', e:'🔗'},
+  {id:'a25',n:'Chop en polea baja',                     c:'Abdomen', e:'🔗'},
+  {id:'a26',n:'Plancha Spiderman',                      c:'Abdomen', e:'🔥'},
+  {id:'a27',n:'Sit-up declinado',                       c:'Abdomen', e:'🔥'},
+  {id:'a28',n:'Crunch en fitball',                      c:'Abdomen', e:'🔥'},
+  {id:'a29',n:'Toes to bar',                            c:'Abdomen', e:'🔥'},
+  {id:'a30',n:'Ab wheel de rodillas',                   c:'Abdomen', e:'🔥'},
+  {id:'a31',n:'Plancha con remo en polea',              c:'Abdomen', e:'🔗'},
+  {id:'a32',n:'Crunch oblicuo c/ peso',                 c:'Abdomen', e:'🔥'},
+  // ── CARDIO nuevos ──
+  {id:'c11',n:'Jumping jacks',                          c:'Cardio',  e:'⚡'},
+  {id:'c12',n:'Natación',                               c:'Cardio',  e:'🏊'},
+  {id:'c13',n:'Senderismo',                             c:'Cardio',  e:'🥾'},
+  {id:'c14',n:'Cuerda de salto (doble vuelta)',         c:'Cardio',  e:'⚡'},
+  {id:'c15',n:'Cicloergómetro reclinado',               c:'Cardio',  e:'🚴'},
+  // ── FUNCIONAL nuevos ──
+  {id:'f23',n:'Clean c/ mancuernas',                    c:'Funcional',e:'💪'},
+  {id:'f24',n:'Push press c/ mancuernas',               c:'Funcional',e:'💪'},
+  {id:'f25',n:'Landmine press',                         c:'Funcional',e:'🏋️'},
+  {id:'f26',n:'Split jump (tijera con salto)',           c:'Funcional',e:'⚡'},
+  {id:'f27',n:'Broad jump (salto horizontal)',           c:'Funcional',e:'⚡'},
+  {id:'f28',n:'Medicine ball slam',                     c:'Funcional',e:'⚡'},
+  {id:'f29',n:'Snatch c/ mancuerna',                    c:'Funcional',e:'💪'},
+  {id:'f30',n:'Tire flip',                              c:'Funcional',e:'⚡'},
+  {id:'f31',n:'Log press',                              c:'Funcional',e:'🏋️'},
+  {id:'f32',n:'Bear crawl (gateo de oso)',              c:'Funcional',e:'⚡'},
+  {id:'f33',n:'Wall ball',                              c:'Funcional',e:'⚡'},
+  {id:'f34',n:'Muscle-up en barra',                     c:'Funcional',e:'🔝'},
+  {id:'f35',n:'Muscle-up en anillas',                   c:'Funcional',e:'🔝'},
+  {id:'f36',n:'Rope climb (escalada de cuerda)',        c:'Funcional',e:'🧗'},
+  // ── ESTIRAMIENTO nuevos ──
+  {id:'st23',n:'Estiramiento psoas en suelo',           c:'Estiramiento',e:'🧘'},
+  {id:'st24',n:'Estiramiento de aductores sentado',     c:'Estiramiento',e:'🧘'},
+  {id:'st25',n:'Estiramiento piriforme tumbado',        c:'Estiramiento',e:'🧘'},
+  {id:'st26',n:'Doorway chest stretch (pectoral)',      c:'Estiramiento',e:'🧘'},
+  {id:'st27',n:'Estiramiento de muñecas',               c:'Estiramiento',e:'🧘'},
+  {id:'st28',n:'Foam roller pantorrillas',              c:'Estiramiento',e:'🧘'},
+  {id:'st29',n:'Thread the needle (columna torácica)',  c:'Estiramiento',e:'🧘'},
+  {id:'st30',n:'Estiramiento de tórax en fitball',      c:'Estiramiento',e:'🧘'},
+  {id:'st31',n:'Círculos de tobillo',                   c:'Estiramiento',e:'🧘'},
+  {id:'st32',n:'Estiramiento de tibial anterior',       c:'Estiramiento',e:'🧘'},
 ];
 
 // ─── ESTADO ──────────────────────────────────────────────────
+const IMG_BASE = 'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/';
+
+// mapeo id → nombre en free-exercise-db
+const IMG_MAP = {
+  // PECHO
+  p1:'Barbell_Bench_Press_-_Medium_Grip', p2:'Dumbbell_Bench_Press',
+  p5:'Barbell_Incline_Bench_Press_-_Medium_Grip', p6:'Dumbbell_Incline_Bench_Press',
+  p9:'Barbell_Decline_Bench_Press', p10:'Dumbbell_Decline_Press',
+  p12:'Dumbbell_Flyes', p13:'Dumbbell_Incline_Flyes',
+  p18:'Dips_-_Chest_Version', p21:'Pushups', p22:'Incline_Push-Up',
+  p23:'Diamond_Push-Up', p24:'Close-Grip_Barbell_Bench_Press',
+  // ESPALDA
+  es1:'Pull-Ups', es2:'Chin-Up',
+  es7:'Wide-Grip_Lat_Pulldown', es8:'Close-Grip_Front_Lat_Pulldown',
+  es9:'Reverse_Grip_Bent-Over_Rows', es10:'Wide-Grip_Rear_Pull-Up',
+  es13:'Bent_Over_Barbell_Row', es14:'Bent_Over_Two-Arm_Long_Bar_Row',
+  es15:'T-Bar_Row_with_Handle', es17:'One-Arm_Dumbbell_Row',
+  es18:'Seated_Cable_Rows', es23:'Barbell_Deadlift',
+  es24:'Romanian_Deadlift', es25:'Sumo_Deadlift',
+  es27:'Straight-Arm_Pulldown', es29:'Hyperextensions_With_No_Hyperextension_Bench',
+  es31:'Barbell_Shrug', es32:'Dumbbell_Shrug',
+  // PIERNAS
+  l1:'Barbell_Full_Squat', l2:'Barbell_Front_Squat',
+  l3:'Dumbbell_Goblet_Squat', l4:'Dumbbell_Bulgarian_Split_Squat',
+  l9:'Leg_Press', l12:'Leg_Extensions', l13:'Leg_Extensions',
+  l14:'Lying_Leg_Curls', l15:'Lying_Leg_Curls',
+  l19:'Barbell_Lunge', l20:'Dumbbell_Lunges', l21:'Walking_Lunge',
+  l22:'Rear_Lunge',
+  l25:'Standing_Calf_Raises', l29:'Pistol_Squat',
+  // GLÚTEOS
+  g1:'Barbell_Hip_Thrust', g5:'Glute_Bridge',
+  g6:'Cable_Hip_Extension', g12:'Dumbbell_Sumo_Squat',
+  // HOMBROS
+  h1:'Barbell_Shoulder_Press', h2:'Seated_Barbell_Military_Press',
+  h3:'Dumbbell_Shoulder_Press', h4:'Seated_Dumbbell_Press',
+  h5:'Arnold_Dumbbell_Press', h6:'Arnold_Dumbbell_Press',
+  h10:'Dumbbell_Lateral_Raise', h11:'Cable_Lateral_Raise',
+  h13:'Front_Barbell_Raise', h14:'Dumbbell_Front_Raise',
+  h16:'Bent-Over_Dumbbell_Rear_Delt_Row_With_Head_On_Bench',
+  h18:'Face_Pull', h19:'Barbell_Upright_Row', h20:'Cable_Upright_Row',
+  // BÍCEPS
+  b1:'Barbell_Curl', b2:'EZ-Bar_Curl',
+  b4:'Dumbbell_Alternate_Bicep_Curl', b5:'Seated_Dumbbell_Curl',
+  b7:'Alternate_Incline_Dumbbell_Curl', b8:'Hammer_Curls',
+  b9:'Hammer_Curls', b10:'Concentration_Curls',
+  b11:'EZ-Bar_Preacher_Curl', b12:'One_Arm_Dumbbell_Preacher_Curl',
+  b14:'Low_Cable_Curl_For_Upper_Biceps', b16:'Spider_Curl',
+  // TRÍCEPS
+  t1:'EZ-Bar_Skullcrusher', t2:'Dumbbell_Tricep_Kickback',
+  t3:'Triceps_Pushdown', t4:'Pushdown',
+  t7:'Overhead_Cable_Curl', t8:'Dumbbell_One-Arm_Triceps_Extension',
+  t9:'EZ-Bar_Overhead_Triceps_Extension',
+  t11:'Triceps_Dip', t12:'Tricep_Dips_Between_Chairs',
+  t13:'Dumbbell_Tricep_Kickback', t14:'Dumbbell_Tricep_Kickback',
+  t15:'Close-Grip_Barbell_Bench_Press', t16:'EZ-Bar_Skullcrusher',
+  // ABDOMEN
+  a1:'Crunch', a3:'Cable_Crunch', a4:'Reverse_Crunch',
+  a5:'Plank', a6:'Side_Bridge', a8:'Leg_Raises',
+  a9:'Hanging_Leg_Raise', a10:'Hanging_Knee_Raise',
+  a11:'Ab_Roller', a12:'Russian_Twist', a14:'Bicycle_Crunch',
+  a15:'Sit-Up', a17:'Hollow_Rock', a18:'Dead_Bug',
+  a19:'Mountain_Climbers', a20:'Windshield_Wipers',
+  // FUNCIONAL
+  f1:'Kettlebell_Swing', f2:'One-Arm_Kettlebell_Swing',
+  f3:'Kettlebell_One_Arm_Clean', f4:'One-Arm_Kettlebell_Military_Press',
+  f6:'Dumbbell_Goblet_Squat', f7:'Kettlebell_Turkish_Get-Up_(Squat_style)',
+  f8:'Kettlebell_Bent_Over_Row', f9:'Kettlebell_Sumo_High_Pull',
+  f11:'Push_Press', f12:'Barbell_Thruster',
+  f13:'Power_Clean', f15:'Burpee', f16:'Box_Jump',
+  f20:'Farmers_Walk',
+  // NUEVOS - PECHO
+  p27:'Floor_Press', p28:'Dumbbell_Floor_Press',
+  p29:'Pike_Push-Up', p30:'Decline_Push-Up',
+  p31:'Decline_Dumbbell_Flyes',
+  // NUEVOS - ESPALDA
+  es34:'Stiff-Legged_Barbell_Deadlift',
+  es35:'Cable_Rear_Delt_Fly',
+  es36:'Bent-Over_Dumbbell_Row',
+  es37:'Superman',
+  es41:'Reverse_Grip_Bent-Over_Rows',
+  // NUEVOS - PIERNAS
+  l30:'Sissy_Squat', l31:'Dumbbell_Side_Lunge',
+  l32:'Curtsy_Lunge', l33:'Jump_Squat',
+  l34:'Barbell_Step_Ups', l35:'Barbell_Side_Split_Squat',
+  l36:'Dumbbell_Romanian_Deadlift', l38:'Glute_Ham_Raise',
+  // NUEVOS - GLÚTEOS
+  g14:'Cable_Pull_Through',
+  g16:'Donkey_Kickbacks',
+  // NUEVOS - HOMBROS
+  h22:'Landmine_Press',
+  h23:'Behind_The_Back_Barbell_Shrug',
+  h24:'Dumbbell_One_Arm_Shoulder_Press',
+  h25:'Lying_Dumbbell_Lateral_Raise',
+  // NUEVOS - BÍCEPS
+  b17:'Wide-Grip_Barbell_Curl',
+  b18:'Reverse_Barbell_Curl',
+  b19:'Cross-Body_Hammer_Curl',
+  b20:'Zottman_Curl',
+  // NUEVOS - TRÍCEPS
+  t17:'Cable_Lying_Triceps_Extension',
+  t19:'Dumbbell_Lying_Triceps_Extension',
+  // NUEVOS - ANTEBRAZOS
+  af1:'Wrist_Curl_Over_Bench_With_Barbell',
+  af2:'Reverse_Wrist_Curl_Over_A_Bench',
+  af3:'Reverse_Barbell_Curl', af5:'Zottman_Curl',
+  af9:'Dumbbell_Wrist_Curl',
+  // NUEVOS - ABDOMEN
+  a23:'Decline_Crunch',
+  a24:'Low_Cable_Woodchop', a25:'Cable_Woodchop',
+  a27:'Decline_Sit-Up',
+  a28:'Exercise_Ball_Crunch',
+  a29:'Hanging_Leg_Raise',
+  a30:'Ab_Roller',
+  // NUEVOS - FUNCIONAL
+  f23:'Dumbbell_Clean', f24:'Dumbbell_Push_Press',
+  f25:'Landmine_Press', f26:'Split_Jumps',
+  f28:'Slam_Ball_Over_Shoulder',
+  f29:'Dumbbell_Snatch',
+};
+
+function showPhoto(exId, exName) {
+  const key = IMG_MAP[exId];
+  if (!key) return;
+  const ov = document.getElementById('photo-ov');
+  const img = document.getElementById('photo-ov-img');
+  const loader = document.getElementById('photo-ov-loader');
+  document.getElementById('photo-ov-name').textContent = exName;
+  img.style.display = 'none';
+  loader.style.display = 'block';
+  img.onload = () => { loader.style.display='none'; img.style.display='block'; };
+  img.onerror = () => { loader.textContent='Imagen no disponible'; };
+  img.src = IMG_BASE + key + '/0.jpg';
+  ov.classList.add('show');
+}
+function closePhoto() {
+  document.getElementById('photo-ov').classList.remove('show');
+}
+
 const wHist = {};
 EDB.forEach(e => { wHist[e.id] = {prev:0, pr:0}; });
 
@@ -568,6 +955,7 @@ let routines = [];
 let nex = [], selC = null, exDrag = null;
 let activeRoutine = null, sessWeights = {};
 let editingRid = null, manageMode = false, rdrag = null;
+let pendingAction = null;
 
 // ─── PERSISTENCIA ────────────────────────────────────────────
 function saveToStorage() {
@@ -584,6 +972,139 @@ function loadFromStorage() {
     if (r) routines = JSON.parse(r);
     if (w) Object.assign(wHist, JSON.parse(w));
   } catch(e) { console.error('Error cargando datos:', e); }
+}
+
+// ─── SETTINGS ────────────────────────────────────────────────
+function onBadgeClick() { if (manageMode) openSettings(); }
+
+function openSettings() {
+  showSettingsMain();
+  document.getElementById('settings-ov').classList.add('show');
+}
+function closeSettings() {
+  document.getElementById('settings-ov').classList.remove('show');
+  pendingAction = null;
+}
+function showSettingsMain() {
+  document.getElementById('sett-main').style.display = 'flex';
+  document.getElementById('sett-confirm').classList.remove('show');
+  document.getElementById('sett-picker').classList.remove('show');
+}
+function settingsAction(type) {
+  pendingAction = type;
+  const cfg = {
+    routines: {
+      icon: '🗑',
+      title: '¿Borrar todas las rutinas?',
+      sub: 'Se eliminarán todas tus rutinas guardadas. El historial de pesos se conservará.',
+    },
+    history: {
+      icon: '📊',
+      title: '¿Borrar el historial de pesos?',
+      sub: 'Se eliminarán todos los récords y pesos anteriores. Las rutinas se conservarán.',
+    },
+    all: {
+      icon: '⚠️',
+      title: '¿Borrar absolutamente todo?',
+      sub: 'Se eliminarán todas las rutinas y todo el historial de pesos. Esta acción no se puede deshacer.',
+    },
+  }[type];
+  document.getElementById('sett-confirm-icon').textContent = cfg.icon;
+  document.getElementById('sett-confirm-title').textContent = cfg.title;
+  document.getElementById('sett-confirm-sub').textContent = cfg.sub;
+  document.getElementById('sett-confirm-back-btn').onclick = showSettingsMain;
+  document.getElementById('sett-main').style.display = 'none';
+  document.getElementById('sett-confirm').classList.add('show');
+}
+
+// ─── SELECTOR EJERCICIO INDIVIDUAL ───────────────────────────
+let pickerExId = null;
+
+function openExPicker() {
+  document.getElementById('sett-main').style.display = 'none';
+  document.getElementById('sett-confirm').classList.remove('show');
+  document.getElementById('sett-picker-input').value = '';
+  renderExPicker();
+  document.getElementById('sett-picker').classList.add('show');
+}
+
+function renderExPicker() {
+  const q = (document.getElementById('sett-picker-input').value || '').toLowerCase();
+  const list = document.getElementById('sett-picker-list');
+  // filtrar ejercicios que tengan historial (prev > 0 o pr > 0)
+  const withHistory = EDB.filter(ex => {
+    const h = wHist[ex.id];
+    return h && (h.prev > 0 || h.pr > 0) && (ex.n.toLowerCase().includes(q) || ex.c.toLowerCase().includes(q));
+  });
+  // todos los ejercicios si se busca algo (aunque no tengan historial)
+  const searched = q
+    ? EDB.filter(ex => ex.n.toLowerCase().includes(q) || ex.c.toLowerCase().includes(q))
+    : withHistory;
+
+  if (!searched.length) {
+    list.innerHTML = `<div class="sett-picker-empty">${q ? 'Sin resultados' : 'Ningún ejercicio tiene historial de pesos todavía'}</div>`;
+    return;
+  }
+  list.innerHTML = searched.map(ex => {
+    const col = CC[ex.c] || {bg:'rgba(212,240,0,.1)', t:'#D4F000'};
+    const h = wHist[ex.id] || {prev:0, pr:0};
+    const hasData = h.prev > 0 || h.pr > 0;
+    return `<div class="sett-picker-item${!hasData?' style="opacity:.4"':''}" onclick="selectExForHistory('${ex.id}')">
+      <div class="sett-picker-icon" style="background:${col.bg}">${ex.e}</div>
+      <div class="sett-picker-info">
+        <div class="sett-picker-name">${ex.n}</div>
+        <span class="sett-picker-cat" style="background:${col.bg};color:${col.t}">${ex.c}</span>
+      </div>
+      <div class="sett-picker-stats">
+        ${h.prev > 0 ? `<div class="sett-picker-stat">Ant. <span>${h.prev} KG</span></div>` : ''}
+        ${h.pr > 0   ? `<div class="sett-picker-stat">Réc. <span>${h.pr} KG</span></div>`  : ''}
+        ${!hasData   ? `<div class="sett-picker-stat" style="color:var(--am)">Sin datos</div>` : ''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function selectExForHistory(exId) {
+  pickerExId = exId;
+  pendingAction = null; // acción individual, no bulk
+  const ex = EDB.find(e => e.id === exId);
+  const h = wHist[exId] || {prev:0, pr:0};
+  const stats = [
+    h.prev > 0 ? `Anterior: ${h.prev} KG` : '',
+    h.pr > 0   ? `Récord: ${h.pr} KG`     : '',
+  ].filter(Boolean).join('  ·  ');
+  document.getElementById('sett-confirm-icon').textContent = '🎯';
+  document.getElementById('sett-confirm-title').textContent = `¿Borrar el historial de "${ex.n}"?`;
+  document.getElementById('sett-confirm-sub').textContent = stats
+    ? `Se borrará: ${stats}. El resto de ejercicios no se verá afectado.`
+    : 'Este ejercicio no tiene datos guardados todavía.';
+  document.getElementById('sett-confirm-back-btn').onclick = openExPicker;
+  document.getElementById('sett-picker').classList.remove('show');
+  document.getElementById('sett-confirm').classList.add('show');
+}
+
+function executeSettings() {
+  if (pendingAction === 'routines' || pendingAction === 'all') routines = [];
+  if (pendingAction === 'history' || pendingAction === 'all') {
+    EDB.forEach(e => { wHist[e.id] = {prev:0, pr:0}; });
+  }
+  if (pendingAction === null && pickerExId) {
+    // acción de ejercicio individual
+    wHist[pickerExId] = {prev:0, pr:0};
+    pickerExId = null;
+    saveToStorage();
+    renderHome();
+    // volver al picker para poder borrar más
+    document.getElementById('sett-confirm').classList.remove('show');
+    document.getElementById('sett-picker-input').value = '';
+    renderExPicker();
+    document.getElementById('sett-picker').classList.add('show');
+    return;
+  }
+  saveToStorage();
+  renderHome();
+  closeSettings();
+  if (manageMode) toggleManage();
 }
 
 // ─── UTILIDADES ──────────────────────────────────────────────
@@ -610,16 +1131,21 @@ function goTo(id) {
 function toggleManage() {
   manageMode = !manageMode;
   const fab = document.getElementById('manage-fab');
+  const badge = document.getElementById('hbadge');
   const dots = [...document.querySelectorAll('.mfab-dot')];
   const rl = document.getElementById('rlist');
   if (manageMode) {
     fab.style.background = 'var(--ac)'; fab.style.borderColor = 'var(--ac)';
     dots.forEach(d => d.style.background = 'var(--ab)');
     rl.classList.add('manage');
+    badge.textContent = '⚙️';
+    badge.classList.add('manage-on');
   } else {
     fab.style.background = 'var(--as2)'; fab.style.borderColor = 'var(--abr)';
     dots.forEach(d => d.style.background = 'var(--am)');
     rl.classList.remove('manage');
+    badge.textContent = routines.length;
+    badge.classList.remove('manage-on');
   }
 }
 
@@ -654,6 +1180,7 @@ function renderDetList() {
   activeRoutine.exercises.forEach(ex => {
     const h = wHist[ex.ex.id] || {prev:0, pr:0};
     const col = CC[ex.ex.c] || {bg:'rgba(212,240,0,.1)', t:'#D4F000'};
+    const hasPhoto = !!IMG_MAP[ex.ex.id];
     const card = document.createElement('div');
     card.className = 'dxc';
     card.innerHTML = `
@@ -661,7 +1188,7 @@ function renderDetList() {
       <div class="dxc-inner">
         <div class="dxc-row1">
           <span class="dxc-em">${ex.ex.e}</span>
-          <span class="dxc-name">${ex.ex.n}</span>
+          <span class="dxc-name${hasPhoto?' has-photo':''}" title="${hasPhoto?'Ver imagen':''}">${ex.ex.n}${hasPhoto?' <span style="font-size:10px;opacity:.5">📷</span>':''}</span>
           <span class="dxc-srpill">${ex.sets}×${ex.reps}</span>
         </div>
         <div class="dxc-row2">
@@ -676,6 +1203,12 @@ function renderDetList() {
         </div>
       </div>`;
     cont.appendChild(card);
+    if (hasPhoto) {
+      card.querySelector('.dxc-name').addEventListener('click', e => {
+        e.stopPropagation();
+        showPhoto(ex.ex.id, ex.ex.n);
+      });
+    }
     const inp = card.querySelector(`#winp-${ex.uid}`);
     inp.addEventListener('focus', () => { inp.style.borderBottomColor='var(--ac)'; inp.nextElementSibling.style.color='var(--ac)'; });
     inp.addEventListener('blur',  () => { inp.style.borderBottomColor=''; inp.nextElementSibling.style.color=''; });
@@ -794,7 +1327,9 @@ function updStats() {
 function renderHome() {
   const list = document.getElementById('rlist');
   const empty = document.getElementById('empty');
-  document.getElementById('hbadge').textContent = routines.length;
+  const badge = document.getElementById('hbadge');
+  // solo actualizar el badge si NO estamos en modo gestión
+  if (!manageMode) badge.textContent = routines.length;
   if (!routines.length) { list.style.display = 'none'; empty.style.display = 'flex'; return; }
   list.style.display = 'flex'; empty.style.display = 'none';
   list.innerHTML = '';

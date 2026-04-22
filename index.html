@@ -1256,10 +1256,10 @@ function hasEdits() {
 function gcy(e) { return e.touches ? e.touches[0].clientY : e.clientY; }
 
 // ─── GESTIÓN DEL HISTORIAL (gesto atrás desactivado) ─────────
-// Se mantiene siempre una entrada guardia en el historial.
-// Cada vez que el gesto atrás la consume, se re-empuja de inmediato.
-// Resultado: el gesto atrás no hace absolutamente nada en toda la app.
-history.pushState({guard: true}, '');
+// Se empujan varias guardias para que la animación predictiva de Android
+// no pueda consumirlas todas antes de que el popstate llegue a JS.
+// En cada popstate se reponee una guardia, manteniendo el buffer.
+for (let i = 0; i < 10; i++) history.pushState({guard: true}, '');
 
 // ─── NAVEGACIÓN ──────────────────────────────────────────────
 function goTo(id) {

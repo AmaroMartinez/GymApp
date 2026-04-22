@@ -1798,28 +1798,47 @@ window.addEventListener('popstate', () => {
 
   const cur = document.querySelector('.scr.on')?.id;
 
-  // 1. Cerrar picker de ejercicios dentro de settings
+  // 1. Picker de ejercicios dentro de settings → volver al panel principal
   if (document.getElementById('sett-picker')?.classList.contains('show')) {
     showSettingsMain(); return;
   }
-  // 2. Cerrar confirmación dentro de settings
+  // 2. Confirmación dentro de settings → usar el mismo botón "Cancelar" del panel
+  //    (puede apuntar a showSettingsMain u openExPicker según el contexto)
   if (document.getElementById('sett-confirm')?.classList.contains('show')) {
-    showSettingsMain(); return;
+    const backFn = document.getElementById('sett-confirm-back-btn')?.onclick;
+    if (typeof backFn === 'function') backFn(); else showSettingsMain();
+    return;
   }
-  // 3. Cerrar cualquier overlay visible
-  for (const oid of ['photo-ov','settings-ov','sess-ov','discard-sess-ov','discard-add-ov']) {
-    const el = document.getElementById(oid);
-    if (el?.classList.contains('show')) { el.classList.remove('show'); return; }
+  // 3. Overlay de settings principal → cerrar completamente (limpia pendingAction)
+  if (document.getElementById('settings-ov')?.classList.contains('show')) {
+    closeSettings(); return;
   }
-  // 4. Cerrar confirmación de borrado de rutina
+  // 4. Overlay de foto → cerrar
+  if (document.getElementById('photo-ov')?.classList.contains('show')) {
+    closePhoto(); return;
+  }
+  // 5. Overlay de resumen de sesión → cerrar (el usuario cancela el guardado)
+  if (document.getElementById('sess-ov')?.classList.contains('show')) {
+    document.getElementById('sess-ov').classList.remove('show'); return;
+  }
+  // 6. Overlay "¿Descartar sesión?" visible → confirmar el descarte y salir.
+  //    El usuario ya indicó que quería salir (primer gesto atrás lo mostró);
+  //    un segundo gesto confirma la intención → misma acción que "Descartar y salir".
+  if (document.getElementById('discard-sess-ov')?.classList.contains('show')) {
+    discardAndGoBack(); return;
+  }
+  // 7. Overlay "¿Descartar rutina?" visible → confirmar el descarte y salir.
+  if (document.getElementById('discard-add-ov')?.classList.contains('show')) {
+    discardAndCancelAdd(); return;
+  }
+  // 8. Confirmación de borrado de rutina (.co) → cancelar
   const coEls = [...document.querySelectorAll('.co.show')];
   if (coEls.length) { coEls.forEach(el => el.classList.remove('show')); return; }
 
-  // 5. Navegar atrás según pantalla actual
+  // 9. Navegar atrás según pantalla actual
   if (cur === 's-sel') {
-    document.querySelectorAll('.scr').forEach(s => s.classList.remove('on'));
-    document.getElementById('s-add').classList.add('on');
-    renderCards();
+    // Volver a la pantalla de creación/edición de rutina
+    goTo('s-add');
   } else if (cur === 's-add') {
     const hasName = document.getElementById('rname').value.trim() !== '';
     if (nex.length > 0 || hasName) {
@@ -1837,7 +1856,7 @@ window.addEventListener('popstate', () => {
       goTo('s-home');
     }
   }
-  // cur === 's-home': no hacer nada, la app no sale
+  // cur === 's-home': no hacer nada, la app nunca sale
 });
 </script>
 </body>

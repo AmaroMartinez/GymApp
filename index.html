@@ -1020,6 +1020,7 @@ function showPhoto(exId, exName) {
   img.onerror = () => { loader.textContent='Imagen no disponible'; };
   img.src = IMG_BASE + key + '/0.jpg';
   ov.classList.add('show');
+  if (!_guardInHistory) _pushGuard(); // Garantizar guardia para bloquear el gesto atrás
 }
 function closePhoto() {
   document.getElementById('photo-ov').classList.remove('show');
@@ -1293,7 +1294,7 @@ function goTo(id) {
   document.getElementById(id).classList.add('on');
   if (id === 's-home') {
     // Limpiar overlays residuales de otras pantallas
-    ['discard-sess-ov', 'sess-ov', 'discard-add-ov'].forEach(oid => {
+    ['discard-sess-ov', 'sess-ov', 'discard-add-ov', 'photo-ov'].forEach(oid => {
       document.getElementById(oid)?.classList.remove('show');
     });
   } else if (!_guardInHistory) {
@@ -1331,8 +1332,10 @@ function toggleManage() {
 
 // ─── SESIÓN ──────────────────────────────────────────────────
 function tryGoBack() {
-  if (hasEdits()) document.getElementById('discard-sess-ov').classList.add('show');
-  else _goHome();
+  if (hasEdits()) {
+    document.getElementById('discard-sess-ov').classList.add('show');
+    if (!_guardInHistory) _pushGuard();
+  } else _goHome();
 }
 function discardAndGoBack() {
   document.getElementById('discard-sess-ov').classList.remove('show');
@@ -1422,6 +1425,7 @@ function showSessConfirm() {
     lines.appendChild(row);
   });
   document.getElementById('sess-ov').classList.add('show');
+  if (!_guardInHistory) _pushGuard(); // Garantizar guardia para bloquear el gesto atrás
 }
 
 function confirmSave() {
@@ -1445,6 +1449,7 @@ function tryCancelAdd() {
     document.getElementById('discard-add-title').textContent = editingRid ? '¿Descartar los cambios?' : '¿Descartar la rutina?';
     document.getElementById('discard-add-sub').textContent = editingRid ? 'Los cambios no se guardarán.' : 'Perderás el nombre y los ejercicios añadidos.';
     document.getElementById('discard-add-ov').classList.add('show');
+    if (!_guardInHistory) _pushGuard();
   } else {
     editingRid = null;
     _goHome();
@@ -1571,7 +1576,7 @@ function attachSwipe(swInner, rid) {
     card.style.transition = 'transform .2s ease';
     hDel.style.opacity = 0; hEdit.style.opacity = 0;
     if (!manageMode) { card.style.transform = 'translateX(0)'; return; }
-    if (cx < -T) { card.style.transform = 'translateX(0)'; setTimeout(() => ov.classList.add('show'), 180); }
+    if (cx < -T) { card.style.transform = 'translateX(0)'; setTimeout(() => { ov.classList.add('show'); if (!_guardInHistory) _pushGuard(); }, 180); }
     else if (cx > T) { card.style.transform = 'translateX(0)'; setTimeout(() => startEditRoutine(rid), 180); }
     else card.style.transform = 'translateX(0)';
   };
